@@ -5,7 +5,6 @@ import {
   TableBody,
   TableCell,
   TableContainer,
-  TableHead,
   TableRow,
   Paper,
 } from "@mui/material";
@@ -21,6 +20,7 @@ import {
   isValidYearlyIncome,
   isValidExpirationDate,
 } from "../../helpers/helpers";
+import { Header } from "./components/components";
 
 type Properties = {
   data: [][];
@@ -126,22 +126,7 @@ const Table: React.FC<Properties> = ({ data, headers }) => {
   return (
     <TableContainer component={Paper} style={{ marginTop: "20px" }}>
       <RNTable>
-        <TableHead>
-          <TableRow>
-            {processedData.length > 0 &&
-              tableHeaders.map((header, index) => (
-                <TableCell
-                  key={index}
-                  style={{
-                    fontWeight: "bold",
-                    textAlign: "center",
-                  }}
-                >
-                  {header}
-                </TableCell>
-              ))}
-          </TableRow>
-        </TableHead>
+        <Header headers={tableHeaders} isVisible={!!processedData.length} />
         <TableBody>
           {processedData.map((row, rowIndex) => (
             <TableRow key={rowIndex}>
